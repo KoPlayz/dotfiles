@@ -6,7 +6,7 @@
 -   **Browser** - librewolf
 -   **Terminal** - kitty
 -   **Shell** - zsh
--   **Editor** - nano/mousepad
+-   **Editor** - nano/vscodium
 -   **Top Bar** - waybar
 -   **Launcher** - wofi
 
