@@ -10,4 +10,6 @@
 -   **Top Bar** - waybar
 -   **Launcher** - wofi
 
+![enter image description here](https://imgur.com/a/iIXphqj)
+
 ## Background
