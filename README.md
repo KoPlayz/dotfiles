@@ -10,6 +10,7 @@
 -   **Top Bar** - waybar
 -   **Launcher** - wofi
 
-![enter image description here](https://imgur.com/a/iIXphqj)
+<img src="./apps.png" alt="img" width="900px">
 
 ## Background
+<img src="./wallpaper.png" alt="img" width="900px">
