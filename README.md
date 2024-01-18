@@ -6,8 +6,10 @@
 -   **Browser** - librewolf
 -   **Terminal** - kitty
 -   **Shell** - zsh
--   **Editor** - nano/vscodium
+-   **Editor** - nano/mousepad
 -   **Top Bar** - waybar
 -   **Launcher** - wofi
+
+![enter image description here](https://imgur.com/a/iIXphqj)
 
 ## Background
