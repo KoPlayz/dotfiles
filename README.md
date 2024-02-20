@@ -3,10 +3,10 @@
 -   **OS** - EndeavourOS
 -   **Window Manager/DE** - hyprland
 -   **File Manager** - thunar
--   **Browser** - librewolf
+-   **Browser** - firefox /w custom user.js
 -   **Terminal** - kitty
 -   **Shell** - zsh
--   **Editor** - nano/VSCodium
+-   **Editor** - nano/VSCodium/
 -   **Top Bar** - waybar
 -   **Launcher** - wofi
 
