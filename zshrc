@@ -1,15 +1,31 @@
+EDITOR=nano
 echo Welcome to the Endeavour terminal!
 alias please="sudo "
+alias mirroru="sudo reflector --verbose --country 'Canada' --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
 # ONLY USE WITH "ZCONF" COMMAND
-
+alias yt.mp4="yt-dlp -f bestvideo+bestaudio/best --merge-output-format mp4 "
+alias yt.mp3="yt-dlp -x --audio-format mp3 "
 # Places
-devdisk=/home/koplayz/Dropbox/DevDisk/
+devdisk=/home/koplayz/Dropbox/DevDisk
+alias syncconfig="nano /home/koplayz/.local/state/syncthing/config.xml"
+fan() {
+    if [ "$1" = "auto" ]; then
+        echo "FFC: Setting fans to auto"
+        sudo ectool --interface=lpc autofanctrl
+    elif [[ "$1" =~ ^[0-9]+$ ]]; then
+        echo "FFC: Setting fans to $1%"
+        sudo ectool --interface=lpc fanduty $1
+    else
+        echo "Invalid argument. Usage: fan auto | fan {number}"
+    fi
+}
 
+alias swaylock="swaylock --clock --indicator --screenshots --effect-scale 0.4 --effect-vignette 0.2:0.5 --effect-blur 4x2 --datestr "%a %e.%m.%Y" --timestr "%k:%M""
+alias websave.files="wget -r -np -nH --cut-dirs=1 -R index.html* "
 #sgit
-alias sgit.commit="git commit -m "
-alias sgit.push="git push origin main"
-# sshq
-alias sshq 
+alias git.commit="git commit -m "
+alias git.push="git push origin main"
+ 
 # ytdlp stuff
 alias yt="yt-dlp "
 alias ytd="yt-dlp --format mp4 --embed-thumbnail --embed-metadata "
@@ -23,12 +39,14 @@ zconf() {
 }
 alias reload="source ~/.zshrc"
 # quick launch
-alias neoconf="sudo $EDITOR /home/koplayz/.config/neofetch/config.conf"
-alias sd="shutdown now "
-alias yummy="yum "
 alias vmmgr="virt-manager"
-# Windows X Linux conversions :/
-alias reflect='reflector --country Canada --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+
+
+# Sleep actions
+
+alias sleep="sudo systemctl start systemd-suspend.service"
+
+
 # 2
 alias 2PNG="mogrify -format png -quality 100 "
 function 2png.q() {
@@ -45,25 +63,7 @@ chk.list() {
  echo "Other (probably usbs):" && sudo fdisk -l | grep sd
 }
 alias chk.ntfs="echo NTFS: && sudo fdisk -l | grep Microsoft && sudo ntfsfix "
-# Commands
-#updateall
-updateall() {
-  echo Updating APT:
-  echo " "
-  echo ---------------------------------------------------
-  sudo apt update | yes
-  sudo apt upgrade | yes
-  echo ---------------------------------------------------
-  echo " " 
-  echo Updating Flatpak:
-  echo ---------------------------------------------------
-  flatpak update
-  echo ---------------------------------------------------
-  echo " "
-  echo Finished updating...
-  echo Standard PKG Managers / Other PKG Managers
-  echo APT-DEB               / Flatpak
-}
+
 #info
 info() {
  echo ------------------------------------------------------------------
@@ -184,7 +184,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git dnf python sudo isodate)
+plugins=(git archlinux command-not-found python sudo isodate)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -213,3 +213,4 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export PATH=$PATH:/home/koplayz/.spicetify

@@ -79,7 +79,8 @@ rm  ~/.config/lastedited.txt
 rm  ~/.config/README.md
 rm  ~/.config/apps.png
 rm  ~/.config/wallpaper.png
-
+echo Installing OhMyZSH
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 cd ~/.oh-my-zsh/themes
 wget https://raw.githubusercontent.com/KoPlayz/omz-themes/main/koplayz.zsh-theme
 echo " "
