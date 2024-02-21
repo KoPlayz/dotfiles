@@ -6,7 +6,6 @@ echo 2..
 sleep 1
 echo 1...
 sleep 1
-#!/bin/bash
 
 # Check which Linux distribution is being used
 if [ -f /etc/os-release ]; then
