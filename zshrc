@@ -1,27 +1,33 @@
 EDITOR=nano
-echo Welcome to the Endeavour terminal!
-alias please="sudo "
-alias mirroru="sudo reflector --verbose --country 'Canada' --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
+alias mirroru="sudo reflector --verbose --country "Canada" --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
+
+
+upd() {
+ echo "Updating with yay..."
+ yay
+ echo "Updating Flatpaks"
+ flatpak update
+}
+
+alias temps="sudo ectool temps all | grep cpu@4c"
+
 # ONLY USE WITH "ZCONF" COMMAND
 alias yt.mp4="yt-dlp -f bestvideo+bestaudio/best --merge-output-format mp4 "
 alias yt.mp3="yt-dlp -x --audio-format mp3 "
-# Places
-devdisk=/home/koplayz/Dropbox/DevDisk
+
 alias syncconfig="nano /home/koplayz/.local/state/syncthing/config.xml"
 fan() {
     if [ "$1" = "auto" ]; then
         echo "FFC: Setting fans to auto"
-        sudo ectool --interface=lpc autofanctrl
+        sudo ectool autofanctrl
     elif [[ "$1" =~ ^[0-9]+$ ]]; then
         echo "FFC: Setting fans to $1%"
-        sudo ectool --interface=lpc fanduty $1
+        sudo ectool fanduty $1
     else
         echo "Invalid argument. Usage: fan auto | fan {number}"
     fi
 }
 
-alias swaylock="swaylock --clock --indicator --screenshots --effect-scale 0.4 --effect-vignette 0.2:0.5 --effect-blur 4x2 --datestr "%a %e.%m.%Y" --timestr "%k:%M""
-alias websave.files="wget -r -np -nH --cut-dirs=1 -R index.html* "
 #sgit
 alias git.commit="git commit -m "
 alias git.push="git push origin main"
@@ -38,14 +44,6 @@ zconf() {
   source ~/.zshrc
 }
 alias reload="source ~/.zshrc"
-# quick launch
-alias vmmgr="virt-manager"
-
-
-# Sleep actions
-
-alias sleep="sudo systemctl start systemd-suspend.service"
-
 
 # 2
 alias 2PNG="mogrify -format png -quality 100 "
@@ -64,26 +62,6 @@ chk.list() {
 }
 alias chk.ntfs="echo NTFS: && sudo fdisk -l | grep Microsoft && sudo ntfsfix "
 
-#info
-info() {
- echo ------------------------------------------------------------------
- echo You are: $USER
- echo Shell: ZSH
- echo "Kernel version: $(uname -r)"
- echo "Date/time: $(date +%c)"
- echo "$(grep -w "VERSION_ID" /etc/os-release | cut -d'"' -f2 | sed 's/VERSION_ID=/Fedora version: /')"
- echo -------------------------------------------------------------------
-}
-
-# Define a function that checks for internet connectivity.
-check_internet() {
-  if ping -q -c 1 -W 1 google.com >/dev/null; then
-    return 0  # Internet connection is available.
-  else
-    return 1  # Internet connection is not available.
-  fi
-}
-
 #zrel
 zrel() {
   if check_internet; then
@@ -95,16 +73,6 @@ zrel() {
   else
     echo "No internet connection available. Only running source."
     source ~/.zshrc
-  fi
-}
-
-#Secure series/NUKE
-erase() {
-  if [ -d "$1" ]; then
-    find "$1" -type f -exec sudo shred -vzn 0 {} \;
-    sudo rm -r "$1"
-  else
-    echo "Error: '$1' is not a directory"
   fi
 }
 
@@ -184,7 +152,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git archlinux command-not-found python sudo isodate)
+plugins=(git archlinux command-not-found python sudo isodate zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -214,3 +182,5 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH=$PATH:/home/koplayz/.spicetify
+
+export GPG_TTY=$(tty)

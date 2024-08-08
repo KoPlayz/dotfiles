@@ -12,6 +12,8 @@ echo "Copying Waybar... (~/.config/waybar)"
 cp -r ~/.config/waybar ~/DevDisk/dotfiles
 echo "Copying wofi... (~/.config/wofi)"
 cp -r ~/.config/wofi ~/DevDisk/dotfiles
-
+echo "Copying ZSH... (~/.zshrc & ~/.oh-my-zsh)"
+cp -r ~/.zshrc ~/DevDisk/dotfiles/ && mv ~/DevDisk/dotfiles/.zshrc ~/DevDisk/dotfiles/zshrc
+cp -r ~/.oh-my-zsh ~/DevDisk/dotfiles/
 echo Copy finished.
 echo Edited: $(date) > lastedited.txt
